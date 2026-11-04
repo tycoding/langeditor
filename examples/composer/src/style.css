@@ -1,0 +1,47 @@
+:root {
+  color-scheme: light dark;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: hsl(var(--background));
+}
+
+body {
+  margin: 0;
+}
+
+.composer-example {
+  width: min(720px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.composer-example header {
+  margin-bottom: 28px;
+}
+
+.composer-example header p:first-child {
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.composer-example h1 {
+  margin: 8px 0;
+  font-size: clamp(30px, 6vw, 48px);
+  letter-spacing: -0.04em;
+}
+
+.composer-example header p:last-child {
+  color: hsl(var(--muted-foreground));
+}
+
+.composer-example pre {
+  overflow: auto;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  background: hsl(var(--muted) / 0.35);
+  font-size: 12px;
+}

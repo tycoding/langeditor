@@ -1,0 +1,38 @@
+:root {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: #1f1f1c;
+  background: #f4f3ef;
+}
+
+body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.react-example {
+  display: grid;
+  gap: 20px;
+}
+
+.react-example header {
+  display: grid;
+  gap: 8px;
+  max-width: 720px;
+}
+
+.react-example p {
+  margin: 0;
+  color: #6d6c65;
+  line-height: 1.6;
+}
+
+.react-example button {
+  width: fit-content;
+  padding: 9px 14px;
+  border: 1px solid #cbc9c0;
+  border-radius: 6px;
+  background: #fffefa;
+  color: #1f1f1c;
+  cursor: pointer;
+}

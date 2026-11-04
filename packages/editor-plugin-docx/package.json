@@ -1,0 +1,56 @@
+{
+  "name": "@langeditor/plugin-docx",
+  "version": "1.0.0",
+  "description": "DOCX import and export extensions for LangEditor.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "./dist/index.es.js"
+  ],
+  "main": "./dist/index.es.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "PRD.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "peerDependencies": {
+    "@langeditor/core": ">=1.1.0 <2.0.0",
+    "@tiptap/core": "^3.30.2",
+    "vue": ">=3.5.0"
+  },
+  "dependencies": {
+    "@vueuse/core": "^14.4.0",
+    "docx": "^9.7.1",
+    "jszip": "^3.10.1",
+    "prosemirror-docx": "^0.6.1"
+  },
+  "devDependencies": {
+    "@langeditor/core": "workspace:*",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^5.0.3",
+    "vue": "^3.5.41",
+    "vue-tsc": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

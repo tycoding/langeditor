@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LangEditor · Vanilla JS</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        background: #f4f3ef;
+        color: #1f1f1c;
+      }
+
+      body {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 48px 24px;
+      }
+
+      .example-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 28px;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      .example-header p {
+        max-width: 480px;
+        color: #6d6c65;
+        line-height: 1.6;
+      }
+
+      .event-log {
+        min-height: 24px;
+        margin-top: 14px;
+        color: #6d6c65;
+        font:
+          12px/1.5 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="example-header">
+      <div>
+        <p>Universal element · native JS</p>
+        <h1>Write with AI in the document.</h1>
+      </div>
+      <p>Complex values are assigned as DOM properties. Changes return through standard CustomEvents.</p>
+    </header>
+
+    <lang-editor
+      id="editor"
+      mode="default"
+      output="html"
+      hide-toolbar="false"
+      hide-menubar="false"
+    ></lang-editor>
+    <div class="event-log" id="event-log" aria-live="polite"></div>
+
+    <script src="../../lib/langeditor-element.umd.js"></script>
+    <script>
+      if (!window.LangEditorElement) {
+        throw new Error(
+          'LangEditor Element bundle was not found. Run `pnpm build:element` from the repository root.',
+        )
+      }
+
+      const {
+        AI,
+        BaseKit,
+        Blockquote,
+        Bold,
+        BulletList,
+        Chart,
+        Clear,
+        Code,
+        CodeBlock,
+        Color,
+        Columns,
+        FindAndReplace,
+        FontFamily,
+        FontSize,
+        FormatPainter,
+        Fullscreen,
+        Heading,
+        Highlight,
+        History,
+        HorizontalRule,
+        Iframe,
+        Image,
+        ImageUpload,
+        Indent,
+        Italic,
+        LineHeight,
+        Link,
+        MoreMark,
+        OrderedList,
+        Preview,
+        Printer,
+        SlashCommand,
+        SourceCode,
+        SpecialCharacter,
+        Strike,
+        SubAndSuperScript,
+        Table,
+        TaskList,
+        TextAlign,
+        Toc,
+        Underline,
+        Video,
+        VideoUpload,
+        WordPage,
+      } = window.LangEditorElement
+
+      const editor = document.querySelector('#editor')
+      const eventLog = document.querySelector('#event-log')
+
+      editor.minHeight = '720px'
+      editor.maxHeight = '900px'
+
+      editor.value = '<h1>AI launch brief</h1><p>Select a sentence and use the AI button to rewrite it in context.</p>'
+      const uploadFiles = files => files.map(file => ({ src: URL.createObjectURL(file), alt: file.name }))
+      editor.extensions = [
+        BaseKit.configure({ placeholder: { showOnlyCurrent: true }, characterCount: { limit: 50000 } }),
+        History,
+        Columns,
+        FormatPainter,
+        Clear,
+        Heading.configure({ spacer: true }),
+        FontSize,
+        FontFamily,
+        Bold,
+        Italic,
+        Underline,
+        Strike,
+        MoreMark,
+        Color.configure({ spacer: true }),
+        Highlight,
+        BulletList,
+        OrderedList,
+        TextAlign.configure({ types: ['heading', 'paragraph', 'image'], spacer: true }),
+        Indent,
+        LineHeight,
+        TaskList.configure({ spacer: true, taskItem: { nested: true } }),
+        Link,
+        Image,
+        ImageUpload.configure({ upload: file => Promise.resolve(URL.createObjectURL(file)) }),
+        Video,
+        VideoUpload.configure({ upload: uploadFiles }),
+        Blockquote,
+        SlashCommand,
+        HorizontalRule,
+        CodeBlock,
+        Table.configure({ spacer: true }),
+        Chart,
+        Code,
+        Printer,
+        SpecialCharacter,
+        Fullscreen.configure({ spacer: true }),
+        SourceCode,
+        Preview,
+        FindAndReplace.configure({ spacer: true }),
+        Iframe,
+        Toc,
+        AI,
+      ]
+
+      editor.addEventListener('lc-ready', () => {
+        eventLog.textContent = 'Ready. Select text to open the contextual AI menu.'
+      })
+
+      editor.addEventListener('lc-change', event => {
+        eventLog.textContent = `Changed ${event.detail.format} content (${String(event.detail.value).length} chars).`
+      })
+
+      editor.addEventListener('lc-ai', event => {
+        const detail = event.detail
+        if (detail.type === 'delta') eventLog.textContent = `AI is streaming (${detail.text.length} chars).`
+        if (detail.type === 'complete') eventLog.textContent = 'AI response is ready for review.'
+      })
+
+      editor.addEventListener('lc-error', event => {
+        eventLog.textContent = `Editor error: ${event.detail.error.message}`
+      })
+    </script>
+  </body>
+</html>

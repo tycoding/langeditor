@@ -1,0 +1,16 @@
+{
+  "name": "langeditor-composer-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@langeditor/core": "file:../..",
+    "vite": "^8.2.2",
+    "vue": "^3.5.41"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.8"
+  }
+}

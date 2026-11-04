@@ -1,0 +1,14 @@
+packages:
+  - 'packages/agent-core'
+  - 'packages/editor-plugin-docx'
+  - 'packages/editor-plugin-spreadsheet'
+  - 'examples/react'
+  - 'examples/svelte'
+
+minimumReleaseAge: 0
+
+onlyBuiltDependencies:
+  - vue-demi
+
+allowBuilds:
+  vue-demi: true

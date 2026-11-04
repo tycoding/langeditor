@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+
+/*
+ * Tippy uses global class names. The attribute namespace keeps host-level
+ * `.tippy-box` and `.tippy-arrow` rules from changing editor popovers,
+ * including poppers that are portalled to document.body.
+ */
+@layer components {
+  [data-tippy-root][data-langeditor-editor] > .tippy-box,
+  .tippy-box[data-langeditor-editor],
+  .tippy-box[data-theme~='langeditor'] {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: inherit !important;
+  }
+
+  [data-tippy-root][data-langeditor-editor] > .tippy-box > .tippy-content,
+  .tippy-box[data-langeditor-editor] > .tippy-content,
+  .tippy-box[data-theme~='langeditor'] > .tippy-content {
+    padding: 0 !important;
+  }
+
+  [data-tippy-root][data-langeditor-editor] > .tippy-box > .tippy-arrow,
+  [data-tippy-root][data-langeditor-editor] > .tippy-box > .tippy-svg-arrow,
+  .tippy-box[data-langeditor-editor] > .tippy-arrow,
+  .tippy-box[data-langeditor-editor] > .tippy-svg-arrow,
+  .tippy-box[data-theme~='langeditor'] > .tippy-arrow,
+  .tippy-box[data-theme~='langeditor'] > .tippy-svg-arrow {
+    display: none !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  [data-langeditor] {
+    @apply bg-background text-foreground;
+    --selection: 214 90% 56%;
+    --selection-foreground: 222.2 47.4% 11.2%;
+    --color-selection: hsl(var(--selection));
+    --color-selection-foreground: hsl(var(--selection-foreground));
+  }
+
+  [data-langeditor].dark {
+    --selection: 217 91% 60%;
+    --selection-foreground: 210 40% 98%;
+  }
+
+  [data-langeditor] button:not(:disabled),
+  [data-langeditor] [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+
+  [data-langeditor] button:disabled,
+  [data-langeditor] [role='button'][aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+}

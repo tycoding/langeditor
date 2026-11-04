@@ -1,0 +1,17 @@
+{
+  "name": "langeditor-react-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@langeditor/react": "file:../../packages/editor-react",
+    "@langeditor/core": "file:../..",
+    "@langeditor/plugin-docx": "file:../../packages/editor-plugin-docx",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^8.2.2"
+  },
+  "devDependencies": {}
+}

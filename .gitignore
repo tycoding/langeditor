@@ -1,0 +1,51 @@
+.DS_Store
+node_modules
+.pnpm-store
+dist/
+lib/
+coverage/
+*.tsbuildinfo
+
+# Local AI coding tools and task state
+.zcode/
+.codex/
+.claude/
+.cursor/
+.aider*
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+
+# The commercial workspace is developed and versioned separately from the
+# public repository. Keep its packages, apps, PRDs and build metadata private.
+/commercial/
+
+# Playground is private and must not be recreated at its legacy public path.
+/playground/
+
+auto-imports.d.ts
+components.d.ts
+
+# local env files
+.env.*
+!.env.example
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+.vercel
+
+# Local credentials
+*.pem
+*.key

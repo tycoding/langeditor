@@ -1,0 +1,37 @@
+{
+  "name": "@langeditor/react",
+  "version": "1.0.2",
+  "description": "A thin React adapter for the LangEditor Web Component.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "sideEffects": true,
+  "peerDependencies": {
+    "@langeditor/core": ">=1.0.0",
+    "react": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

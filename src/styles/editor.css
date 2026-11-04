@@ -1,0 +1,377 @@
+/* Native range controls need pseudo-elements that Tailwind cannot express
+   consistently across WebKit and Firefox. Keep this small semantic recipe
+   scoped to the Word status bar. */
+.lc-word-zoom-range {
+  accent-color: var(--color-primary, hsl(var(--primary)));
+}
+
+.lc-word-zoom-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(
+    in srgb,
+    var(--color-muted-foreground, hsl(var(--muted-foreground))) 38%,
+    transparent
+  );
+}
+
+.lc-word-zoom-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(
+    in srgb,
+    var(--color-muted-foreground, hsl(var(--muted-foreground))) 38%,
+    transparent
+  );
+}
+
+.lc-word-zoom-range::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 2px solid var(--color-background, hsl(var(--background)));
+  border-radius: 999px;
+  background: var(--color-primary, hsl(var(--primary)));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-foreground, hsl(var(--foreground))) 18%, transparent);
+  appearance: none;
+}
+
+.lc-word-zoom-range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--color-background, hsl(var(--background)));
+  border-radius: 999px;
+  background: var(--color-primary, hsl(var(--primary)));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-foreground, hsl(var(--foreground))) 18%, transparent);
+}
+
+.lc-word-zoom-range:hover::-webkit-slider-thumb,
+.lc-word-zoom-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--color-primary, hsl(var(--primary)));
+}
+
+.lc-word-zoom-range:hover::-moz-range-thumb,
+.lc-word-zoom-range:focus-visible::-moz-range-thumb {
+  border-color: var(--color-primary, hsl(var(--primary)));
+}
+
+.lc-word-zoom-range:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-ring, hsl(var(--ring))) 40%, transparent);
+  outline-offset: 2px;
+}
+
+[data-type='word-page'] {
+  background: var(--lc-word-page);
+  border-radius: var(--lc-editor-radius, 0.5rem);
+}
+
+/* Word mode already uses page surfaces as its visual boundary. The host
+   container must fill its flex parent without adding a second dark outline. */
+[data-langeditor][data-editor-mode='word'] {
+  height: 100%;
+  min-height: 0;
+}
+
+[data-langeditor][data-editor-layout='editor']:not([data-editor-mode='word']),
+[data-langeditor][data-editor-layout='document'] {
+  border: var(--lc-editor-border-width, var(--lc-editor-outline-width, 1px)) solid
+    var(--lc-editor-border-color, var(--lc-editor-outline-color, hsl(var(--border) / 0.72)));
+}
+
+/* A plugin-owned document can be empty while its provider performs the first
+   synchronization. Keep the Word surface recognizably page-oriented without
+   inserting local ProseMirror nodes that could later merge into remote data. */
+[data-word-document-host] .word-content-canvas > .ProseMirror:not(:has(> [data-type='word-page'])) {
+  width: 100% !important;
+  max-width: 794px !important;
+  min-width: 0 !important;
+  min-height: 1123px !important;
+  padding: 88px !important;
+  background: var(--lc-word-page) !important;
+  box-shadow:
+    0 0 0 1px rgb(17 24 39 / 8%),
+    0 4px 14px rgb(17 24 39 / 8%);
+}
+
+.dark [data-word-document-host] .word-content-canvas > .ProseMirror:not(:has(> [data-type='word-page'])) {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 8%),
+    0 5px 16px rgb(0 0 0 / 24%);
+}
+
+/* Keep every toolbar control readable on hover, including compound controls
+   whose inner buttons intentionally reset their own background. */
+[data-editor-toolbar] button:not(:disabled):hover,
+[data-editor-toolbar] [role='button']:not([aria-disabled='true']):hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+/* Keep the A4 canvas centered while allowing embedded Word editors to shrink
+   to their container. The page keeps its typography and uses the zoom control
+   only when the user explicitly changes it. */
+[data-word-document-host] {
+  container-type: inline-size;
+  overflow-x: hidden;
+}
+
+@container (max-width: 1020px) {
+  [data-word-document-host] .word-content-canvas {
+    width: 100% !important;
+    max-width: 794px !important;
+    min-width: 0 !important;
+  }
+
+  [data-word-document-host] .word-content-canvas > .ProseMirror {
+    width: 100% !important;
+    max-width: 794px !important;
+    min-width: 0 !important;
+  }
+
+  [data-word-document-host] .word-content-canvas > .ProseMirror:not(:has(> [data-type='word-page'])) {
+    padding-right: clamp(20px, 8cqw, 88px) !important;
+    padding-left: clamp(20px, 8cqw, 88px) !important;
+  }
+
+  [data-word-document-host] .word-content-canvas > .ProseMirror > [data-type='word-page'] {
+    width: 100% !important;
+    max-width: 794px !important;
+    min-width: 0 !important;
+    padding-right: clamp(20px, 8cqw, 88px) !important;
+    padding-left: clamp(20px, 8cqw, 88px) !important;
+  }
+}
+
+.tiptap {
+  @apply caret-black outline-0 px-4 py-2 sm:px-20 sm:py-6;
+  min-height: 180px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Composer is an input surface, not a centered document canvas. Keep its
+   editable area aligned with the context tray and footer at every viewport. */
+[data-editor-layout='composer'] .tiptap {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0.75rem;
+}
+
+.tiptap:focus,
+.tiptap:focus-within,
+.tiptap:focus-visible {
+  @apply outline-none;
+}
+
+.dark .tiptap {
+  @apply caret-white;
+}
+
+.tiptap .img-placeholder {
+  width: fit-content;
+  position: relative;
+  @apply backdrop-blur-sm bg-white/30;
+}
+
+.tiptap .img-placeholder:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  @apply animate-spin border-current border-t-transparent rounded-full border-[3px] inline-block;
+}
+
+.tiptap .highlight-paragraph {
+  background-color: hsl(var(--selection) / 22%);
+  color: hsl(var(--selection-foreground));
+}
+
+/* Table */
+.tiptap .tableWrapper {
+  @apply overflow-x-auto;
+}
+
+.tiptap .tableWrapper table {
+  overflow: hidden;
+  display: table;
+}
+
+.tiptap .tableWrapper table .column-resize-handle {
+  @apply -bottom-[2px] absolute -right-1 top-0 w-1 z-10 pointer-events-none bg-primary;
+}
+
+.tiptap .tableWrapper table .resize-cursor {
+  cursor: 'col-resize';
+}
+
+.tiptap .tableWrapper table .selectedCell {
+  @apply bg-black/5 border-black/20 border-double;
+}
+
+.dark .tiptap .tableWrapper table .selectedCell {
+  @apply bg-white/10 border-white/20;
+}
+
+/* Column */
+.tiptap > *:first-child,
+.tiptap [data-type='column'] > * {
+  @apply first:mt-0 last:mb-0;
+}
+
+.tiptap [data-type='columns'].focus [data-type='column'],
+.tiptap [data-type='columns']:hover [data-type='column'],
+.tiptap [data-type='columns'] [data-type='column'].focus {
+  @apply bg-accent;
+}
+
+.tiptap [data-type='columns']::before,
+.tiptap [data-type='columns']::after {
+  content: none !important;
+}
+
+.tiptap [data-type='column'] {
+  @apply rounded border border-solid border-transparent p-1;
+  transition: border 160ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.tiptap [data-type='column']:hover {
+  @apply border-gray-50;
+}
+
+.dark .tiptap [data-type='column']:hover {
+  @apply border-gray-900;
+}
+
+.tiptap [data-type='column']:has(.is-active) {
+  @apply border-neutral-100;
+}
+
+.dark .tiptap [data-type='column']:has(.is-active) {
+  @apply border-neutral-900;
+}
+
+.tiptap [data-type='column'].focus {
+  @apply border-neutral-100;
+}
+
+.dark .tiptap [data-type='column'].focus {
+  @apply border-neutral-900;
+}
+
+/* Horizontal Rule */
+.tiptap [data-type='horizontalRule'] {
+  @apply transition-all duration-100 ease-in-out cursor-pointer;
+}
+
+.tiptap [data-type='horizontalRule'].ProseMirror-selectednode {
+  @apply bg-black/5;
+}
+
+.dark .tiptap [data-type='horizontalRule'].ProseMirror-selectednode {
+  @apply bg-white/10;
+}
+
+.tiptap [data-type='horizontalRule'].ProseMirror-selectednode hr {
+  @apply border-t-black/30;
+}
+
+.dark .tiptap [data-type='horizontalRule'].ProseMirror-selectednode hr {
+  @apply border-t-white/30;
+}
+
+.tiptap [data-type='horizontalRule']:hover:not(.ProseMirror-selectednode) {
+  @apply bg-black/5;
+}
+
+.dark .tiptap [data-type='horizontalRule']:hover:not(.ProseMirror-selectednode) {
+  @apply bg-white/10;
+}
+
+.tiptap :not(.dragging) .ProseMirror-selectednode {
+  @apply outline-none bg-black/10 shadow-none transition-colors;
+}
+
+.dark .tiptap :not(.dragging) .ProseMirror-selectednode {
+  @apply bg-white/20;
+}
+
+.tiptap .selection {
+  @apply inline;
+}
+
+.tiptap::selection,
+.tiptap *::selection {
+  background-color: hsl(var(--selection) / 38%);
+  color: hsl(var(--selection-foreground));
+}
+
+.tiptap .selection,
+.tiptap *::selection {
+  background-color: hsl(var(--selection) / 38%);
+}
+
+.dark .tiptap::selection,
+.dark .tiptap *::selection {
+  background-color: hsl(var(--selection) / 48%);
+  color: hsl(var(--selection-foreground));
+}
+
+.dark .tiptap .selection,
+.dark .tiptap *::selection {
+  background-color: hsl(var(--selection) / 48%);
+}
+
+.tiptap .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  width: 100%;
+  height: 0;
+}
+
+.tiptap .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  width: 100%;
+  height: 0;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  float: left;
+  height: 0;
+  color: #adb5bd;
+  pointer-events: none;
+  width: 100%;
+  content: attr(data-placeholder);
+}
+
+.tiptap .ProseMirror-gapcursor {
+  @apply relative w-full max-w-2xl mx-auto;
+}
+
+.tiptap .ProseMirror-gapcursor:after {
+  @apply border-t-black/40 w-full -top-[1.5em] max-w-2xl mx-auto left-0 right-0;
+}
+
+.dark .tiptap .ProseMirror-gapcursor:after {
+  @apply border-t-white/40;
+}
+
+.tiptap .iframe-wrapper.focus > div {
+  @apply outline-primary outline-4 outline;
+}
+
+.tiptap .lc-mention {
+  @apply rounded bg-accent px-1 py-0.5 text-accent-foreground;
+  box-decoration-break: clone;
+}

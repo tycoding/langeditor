@@ -1,0 +1,72 @@
+/*
+ * Public theme contract. These classes are intentionally stable so hosts can
+ * style an embedded editor without reaching into implementation-only markup.
+ * Color values use the same HSL-channel format as the core theme tokens.
+ */
+.lc-editor-root.lc-editor-root,
+.lc-editor-document-root.lc-editor-document-root {
+  background-color: var(--lc-editor-surface-background, hsl(var(--background)));
+  color: var(--lc-editor-surface-foreground, hsl(var(--foreground)));
+}
+
+.lc-editor-root .lc-editor-shell,
+.lc-editor-document-root [data-editor-shell] {
+  background-color: var(--lc-editor-surface-background, hsl(var(--background)));
+  color: var(--lc-editor-surface-foreground, hsl(var(--foreground)));
+}
+
+.lc-editor-root .lc-editor-toolbar-region,
+.lc-editor-root .lc-editor-menubar,
+.lc-editor-root .lc-editor-toolbar,
+.lc-editor-root .lc-editor-statusbar,
+.lc-editor-document-root [data-editor-shell] > :is(header, [data-editor-toolbar]),
+.lc-editor-document-root [data-editor-shell] > .lc-editor-toolbar {
+  background-color: var(--lc-editor-toolbar-background, hsl(var(--background)));
+  color: var(--lc-editor-toolbar-foreground, hsl(var(--foreground)));
+}
+
+.lc-editor-root .lc-editor-toolbar,
+.lc-editor-root .lc-editor-menubar,
+.lc-editor-root .lc-editor-statusbar,
+.lc-editor-document-root {
+  border-color: var(--lc-editor-divider-color, var(--lc-editor-border-color, hsl(var(--border) / 0.72)));
+}
+
+.lc-editor-root .lc-editor-content-area,
+.lc-editor-document-root [data-document-surface] {
+  background-color: var(--lc-editor-content-background, transparent);
+  color: var(--lc-editor-content-foreground, hsl(var(--foreground)));
+}
+
+.lc-editor-root .lc-editor-content,
+.lc-editor-root .lc-editor-content .tiptap {
+  color: var(--lc-editor-content-foreground, hsl(var(--foreground)));
+}
+
+.lc-editor-root .lc-editor-word-page,
+.lc-editor-root [data-type='word-page'] {
+  background-color: var(--lc-editor-page-background, var(--lc-word-page, hsl(var(--background))));
+  border-radius: var(--lc-editor-radius, var(--lc-editor-default-radius, 0.5rem));
+}
+
+.lc-editor-root .lc-editor-sidebar,
+.lc-editor-document-root [data-document-sidebar] {
+  border-color: var(--lc-editor-divider-color, var(--lc-editor-border-color, hsl(var(--border) / 0.72)));
+  background-color: var(--lc-editor-surface-background, hsl(var(--background)));
+}
+
+.lc-editor-root .lc-editor-toolbar button:hover,
+.lc-editor-root .lc-editor-menubar [role='menuitem']:hover {
+  background-color: var(--lc-editor-accent-background, hsl(var(--accent)));
+  color: var(--lc-editor-accent-foreground, hsl(var(--accent-foreground)));
+}
+
+.lc-editor-root .lc-editor-toolbar button:focus-visible,
+.lc-editor-root .lc-editor-menubar [role='menuitem']:focus-visible {
+  outline-color: var(--lc-editor-focus-color, var(--lc-editor-accent-background, hsl(var(--accent))));
+}
+
+.lc-editor-root .text-muted-foreground,
+.lc-editor-document-root .text-muted-foreground {
+  color: var(--lc-editor-muted-foreground, hsl(var(--muted-foreground)));
+}

@@ -1,0 +1,15 @@
+{
+  "name": "langeditor-svelte-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@langeditor/core": "file:../..",
+    "@langeditor/plugin-docx": "file:../../packages/editor-plugin-docx",
+    "svelte": "^5.0.0",
+    "vite": "^8.2.2",
+    "@sveltejs/vite-plugin-svelte": "^6.0.0"
+  }
+}
