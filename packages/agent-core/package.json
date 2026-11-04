@@ -1,6 +1,6 @@
 {
   "name": "@langeditor/agent-core",
-  "version": "0.1.0",
+  "version": "1.1.4",
   "description": "Framework-independent agent loop, tool skill and stream transport contract for LangEditor AI agent workflows.",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,8 @@
   "files": [
     "dist",
     "package.json",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "vite build",
@@ -38,5 +39,18 @@
     "vite": "^8.2.2",
     "vite-plugin-dts": "^5.0.3",
     "vitest": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tycoding/langeditor.git",
+    "directory": "packages/agent-core"
+  },
+  "homepage": "https://langeditor.cn",
+  "bugs": {
+    "url": "https://github.com/tycoding/langeditor/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

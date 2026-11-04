@@ -20,7 +20,7 @@ licenses:
 Univer, Handsontable, and any dependency requiring a commercial web-use license
 are explicitly out of scope.
 
-## Version 0.1 scope
+## Current scope
 
 - editable cell grid with keyboard navigation and range selection;
 - formulas calculated by IronCalc;
@@ -38,7 +38,7 @@ are explicitly out of scope.
 
 ## Non-goals
 
-Version 0.1 does not claim complete Excel fidelity. Macros, pivot tables,
+The plugin does not claim complete Excel fidelity. Macros, pivot tables,
 embedded charts/images, external workbook links, protected/encrypted workbooks,
 and advanced print areas are not editable. Import returns diagnostics for features
 that cannot be represented safely.

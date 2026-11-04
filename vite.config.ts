@@ -61,6 +61,7 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       outDirs: 'lib',
+      entryRoot: 'src',
       include: ['src'],
     }),
     cssNamespacePlugin(),

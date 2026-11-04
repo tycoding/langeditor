@@ -69,3 +69,25 @@ Issue 中请提供：
 - 浏览器控制台或构建输出中的完整错误
 
 安全问题请不要公开提交，请按 [安全说明](./SECURITY.md) 联系维护者。
+
+## 发布公开包
+
+`@langeditor/core`、`@langeditor/react`、`@langeditor/plugin-docx`、
+`@langeditor/plugin-spreadsheet` 和 `@langeditor/agent-core` 使用统一版本号。
+发布时同步修改五份 `package.json`、两个插件的 manifest 版本和 Core 兼容范围，
+并通过 pnpm 更新锁文件。
+
+发布前清理旧构建产物，执行以下检查：
+
+```bash
+pnpm check
+pnpm -r --filter '@langeditor/*' --if-present typecheck
+pnpm --filter @langeditor/agent-core test
+pnpm -r --filter '@langeditor/*' --if-present build
+pnpm release:check
+git diff --check
+```
+
+提交版本变更后，推送与版本号一致的 `vX.Y.Z` 标签。GitHub 发布工作流会校验版本，
+构建并将五个包发布到 `https://registry.npmjs.org`；已存在的版本会跳过。
+工作流使用仓库的 `NPM_TOKEN` secret，示例与私有 `commercial/` 工作区不会发布。

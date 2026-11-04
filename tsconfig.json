@@ -32,5 +32,5 @@
     "**/*.ts",
     "src/plugins/drag.ts"
   ],
-  "exclude": ["node_modules", "dist", "lib", "commercial", "packages/editor-plugin-spreadsheet", "packages/agent-core", "packages/editor-react"]
+  "exclude": ["node_modules", "dist", "lib", "commercial", "packages/editor-plugin-docx", "packages/editor-plugin-spreadsheet", "packages/agent-core", "packages/editor-react"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@langeditor/plugin-docx",
-  "version": "1.0.0",
+  "version": "1.1.4",
   "description": "DOCX import and export extensions for LangEditor.",
   "license": "MIT",
   "type": "module",
@@ -29,7 +29,7 @@
     "package.json"
   ],
   "peerDependencies": {
-    "@langeditor/core": ">=1.1.0 <2.0.0",
+    "@langeditor/core": "^1.1.4",
     "@tiptap/core": "^3.30.2",
     "vue": ">=3.5.0"
   },
@@ -51,6 +51,16 @@
     "vue-tsc": "^3.1.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tycoding/langeditor.git",
+    "directory": "packages/editor-plugin-docx"
+  },
+  "homepage": "https://langeditor.cn",
+  "bugs": {
+    "url": "https://github.com/tycoding/langeditor/issues"
   }
 }

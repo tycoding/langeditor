@@ -1,5 +1,6 @@
 packages:
   - 'packages/agent-core'
+  - 'packages/editor-react'
   - 'packages/editor-plugin-docx'
   - 'packages/editor-plugin-spreadsheet'
   - 'examples/react'

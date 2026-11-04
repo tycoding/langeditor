@@ -2,8 +2,8 @@ export const DOCX_PLUGIN_ID = '@langeditor/plugin-docx'
 
 export const docxManifest = {
   id: DOCX_PLUGIN_ID,
-  version: '1.0.0',
-  coreRange: '>=1.1.0 <2.0.0',
+  version: '1.1.4',
+  coreRange: '^1.1.4',
   requires: [] as string[],
   conflicts: [] as string[],
   provides: ['serializer:docx', 'import:docx', 'export:docx'],
