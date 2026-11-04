@@ -1,6 +1,6 @@
 {
   "name": "@langeditor/plugin-docx",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "DOCX import and export extensions for LangEditor.",
   "license": "MIT",
   "type": "module",
@@ -29,7 +29,7 @@
     "package.json"
   ],
   "peerDependencies": {
-    "@langeditor/core": "^1.1.4",
+    "@langeditor/core": "^1.1.5",
     "@tiptap/core": "^3.30.2",
     "vue": ">=3.5.0"
   },

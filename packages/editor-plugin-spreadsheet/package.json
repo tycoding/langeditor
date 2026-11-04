@@ -1,6 +1,6 @@
 {
   "name": "@langeditor/plugin-spreadsheet",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Open-source spreadsheet document mode for LangEditor powered by IronCalc.",
   "license": "MIT",
   "type": "module",
@@ -34,7 +34,7 @@
     "package.json"
   ],
   "peerDependencies": {
-    "@langeditor/core": "^1.1.4",
+    "@langeditor/core": "^1.1.5",
     "@lucide/vue": ">=0.468.0",
     "vue": ">=3.5.0"
   },

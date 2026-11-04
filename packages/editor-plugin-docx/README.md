@@ -53,5 +53,5 @@ and Word comments. Unsupported structures produce diagnostics instead of being
 silently dropped. `ExportWord` serializes ordinary editor content and Word page
 documents, including comments and registered fallback representations.
 
-The plugin is MIT licensed. It requires `@langeditor/core ^1.1.4` and
+The plugin is MIT licensed. It requires `@langeditor/core ^1.1.5` and
 does not add any commercial capability or license requirement.

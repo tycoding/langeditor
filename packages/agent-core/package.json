@@ -1,6 +1,6 @@
 {
   "name": "@langeditor/agent-core",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Framework-independent agent loop, tool skill and stream transport contract for LangEditor AI agent workflows.",
   "license": "MIT",
   "type": "module",

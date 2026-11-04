@@ -1,9 +1,9 @@
 {
   "name": "@langeditor/core",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "private": false,
   "license": "MIT",
-  "description": "An AI-first, framework-agnostic editor for JavaScript applications, powered by Tiptap and Web Components.",
+  "description": "AI-first, framework-agnostic rich text editor built on Tiptap and Web Components. Supports Vue, React, Svelte, AI workflows, Word/DOCX, and document plugins.",
   "author": "TyCoding <langchat@outlook.com>",
   "homepage": "https://langeditor.cn",
   "repository": {
